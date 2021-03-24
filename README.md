@@ -10,9 +10,8 @@ Navigate to your directory of choice in Terminal or Git Bash. Run the following 
 
 ```
 git clone https://github.com/erik-taylor-arrivia/mobtimer.git
-navigate down to the mobtimer folder that was just created, type the following command:
 ```
-
+navigate down to the mobtimer folder that was just created, type the following command:
 ```
 npm install
 ```
