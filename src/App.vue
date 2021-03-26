@@ -29,10 +29,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-family: Roboto, sans-serif;
   background-repeat: no-repeat;
-  background-position: 66% 0%;
+  background-position: 76% 0%;
+  background-size: auto;
 
-    @media (max-width: 768px) {
-        background-position: 96% 0%;
+    @media (min-width: 1700px) {
+      background-size: cover;
     }
 
 }
