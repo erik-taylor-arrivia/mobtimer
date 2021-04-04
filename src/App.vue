@@ -1,19 +1,19 @@
 <template>
   <div id="app">
-    <!-- <HelloWorld msg="The NPM MobTimer"/> -->
     <MobTimer />
+    <MobForm />
   </div>
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
 import MobTimer from './components/MobTimer.vue'
+import MobForm from './components/Mobbers.vue'
 
 export default {
   name: 'App',
   components: {
-    // HelloWorld,
-    MobTimer
+    MobTimer,
+    MobForm
   }
 }
 </script>
@@ -45,8 +45,16 @@ body {
   color: #2c3e50;
   margin: 0 auto 5em;
   padding: 1em;
-  max-width: 20%;
   background-color: #fff;
   border-radius: 6px;
+  max-width: 80%;
+
+  @media (min-width: 768px) {
+    max-width: 40%;
+  }
+
+  @media (min-width: 1200px) {
+    max-width:30%;
+  }
 }
 </style>
