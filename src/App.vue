@@ -37,6 +37,7 @@ body {
     }
 
 }
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -57,4 +58,26 @@ body {
     max-width:30%;
   }
 }
+
+.btn-primary.disabled, .btn-primary:disabled {
+  color: #fff;
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+::-webkit-input-placeholder {
+    text-align: center;
+  }
+
+  :-moz-placeholder { /* Firefox 18- */
+    text-align: center;
+  }
+
+  ::-moz-placeholder {  /* Firefox 19+ */
+    text-align: center;
+  }
+
+  :-ms-input-placeholder {
+    text-align: center;
+  }
 </style>

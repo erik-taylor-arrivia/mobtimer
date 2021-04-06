@@ -2,12 +2,35 @@
   <div id="mobWrapper">
     <div class="container">
       <h2>{{title}}</h2>
+      <form class="mt-3 mb-3 form-inline justify-content-center" v-on:submit.prevent="">
+        <div class="row">
+          <div class="form-group col-auto p-0">
+            <input
+              type="number"
+              id="interval"
+              step='1'
+              min='1'
+              v-model="time"
+              class="form-control"
+              placeholder="Set interval">
+          </div>
+          <div class="form-group col-auto">
+            <button
+              :disabled="submitIsDisabled"
+              class="btn btn-primary">
+              Change
+            </button>
+          </div>
+        </div>
+      </form>
+
       <div id="timer">
         <span id="minutes">{{ minutes }}</span>
         <span id="middle">:</span>
         <span id="seconds">{{ seconds }}</span>
       </div>
-      <span id="buttons">
+
+      <span id="buttons" class="btn-group" role="group">
         <button
           id="start"
           class="btn btn-primary"
@@ -33,12 +56,7 @@
             <i class="fas fa-undo"></i>
         </button>
       </span>
-      <div id="alert" class="alert alert-success alert-dismissible fade show d-none" role="alert">
-        <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
+
     </div>
   </div>
 </template>
@@ -49,6 +67,7 @@ export default {
   data() {
     return {
       timer: null,
+      time: null,
       totalTime: (20 * 60),
       resetButton: false,
       title: "Join the Family"
@@ -62,13 +81,16 @@ export default {
     seconds() {
       const seconds = this.totalTime - (this.minutes * 60);
       return this.padTime(seconds);
+    },
+    submitIsDisabled() {
+      return this.time == null;
     }
   },
   methods: {
     startTimer() {
       this.timer = setInterval(() => this.countdown(), 1000);
       this.resetButton = true;
-      this.title = "Time to earn ya keep"
+      this.title = "Work started"
     },
     stopTimer() {
       clearInterval(this.timer);
@@ -81,7 +103,7 @@ export default {
       clearInterval(this.timer);
       this.timer = null;
       this.resetButton = false;
-      this.title = "Restart da work"
+      this.title = "Join the Family"
     },
     padTime(time) {
       return (time < 10 ? '0' : '') + time;
@@ -109,7 +131,7 @@ export default {
   }
 
   button {
-    margin: 0.5em;
+    margin: 0;
 
     .far {
       margin: 0 0.25em;

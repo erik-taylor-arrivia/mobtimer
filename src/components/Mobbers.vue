@@ -108,10 +108,4 @@ export default {
   ul {
       cursor: pointer;
   }
-
-  .btn-primary.disabled, .btn-primary:disabled {
-    color: #fff;
-    background-color: #6c757d;
-    border-color: #6c757d;
-  }
 </style>
