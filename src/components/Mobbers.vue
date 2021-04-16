@@ -80,6 +80,12 @@ export default {
     }
   },
   methods: {
+    // for now use a hard coded mob - Some kind of drop down
+    // get a mob session:
+    //  1. get a list of mob sessions from a mob (hard code them for now in the database)
+    // create a mobber (initially already in the database)
+    // add the mobber to the session
+    // if the session isn't started, start the session
     addMobber() {
       mob.push({
         name:this.text,
