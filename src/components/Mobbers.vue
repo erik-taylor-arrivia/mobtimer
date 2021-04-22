@@ -21,6 +21,7 @@
                   class="form-check-input">
                 <!-- v-bind is used to change the value of HTML attributes, in this case the class attribute. -->
                 <span
+                  class="capitalize"
                   v-bind:class="{completed:mobber.complete}">
 
                   <!-- Here we see an example of Vue's {{ }} syntax, which is quite familiar to any Angular or Handlebars users.-->
@@ -107,5 +108,9 @@ export default {
 
   ul {
       cursor: pointer;
+  }
+
+  .capitalize {
+    text-transform: capitalize;
   }
 </style>

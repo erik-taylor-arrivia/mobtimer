@@ -2,7 +2,7 @@
   <div id="mobWrapper">
     <div class="container">
       <h2>{{title}}</h2>
-      <form class="mt-3 mb-3 form-inline justify-content-center" v-on:submit.prevent="">
+      <!-- <form class="mt-3 mb-3 form-inline justify-content-center" v-on:submit.prevent="">
         <div class="row">
           <div class="form-group col-auto p-0">
             <input
@@ -10,7 +10,7 @@
               id="interval"
               step='1'
               min='1'
-              v-model="time"
+              v-model.number="time"
               class="form-control"
               placeholder="Set interval">
           </div>
@@ -22,7 +22,7 @@
             </button>
           </div>
         </div>
-      </form>
+      </form> -->
 
       <div id="timer">
         <span id="minutes">{{ minutes }}</span>
@@ -66,8 +66,8 @@ export default {
   name: 'MobTimer',
   data() {
     return {
-      timer: null,
       time: null,
+      timer: null,
       totalTime: (20 * 60),
       resetButton: false,
       title: "Join the Family"
@@ -82,9 +82,9 @@ export default {
       const seconds = this.totalTime - (this.minutes * 60);
       return this.padTime(seconds);
     },
-    submitIsDisabled() {
-      return this.time == null;
-    }
+    // submitIsDisabled() {
+    //   return this.time == null;
+    // }
   },
   methods: {
     startTimer() {
