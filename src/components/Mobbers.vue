@@ -1,5 +1,7 @@
 <template>
   <section>
+    <p>The Status: {{getMobsStatus}}</p>
+    <p>Mobs: {{filteredMobs}}</p>
     <!-- Here the v:on attribute is used, which is used to respond to any event. In this case, when the "click" event happens, it causes the value of showComplete to be changed. It is attached here to the label. -->
     <h4>
         <label v-on:click="showComplete = !showComplete">
@@ -52,6 +54,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 let mob = [{
   name: "Janean",
   complete: false
@@ -60,23 +63,48 @@ let mob = [{
   name:"Aaron",
   complete: false
 }];
+let mobs = [];
+let mobsStatus = "";
 
 export default {
   name: 'Mobbers',
   data() {
     return {
       mob,
+      mobs,
+      mobsStatus,
       text:'',
       showComplete:true,
     };
   },
+  mounted () {
+      axios
+        .get('http://localhost:63636/Mob/GetMobsByTeamId?teamId=1')
+        .then( response => {
+          console.log(`mobs response: ${response}`);
+          if (response.status === 200) {
+            this.mobs = response.data;
+            this.mobsStatus = "is working";
+          } else {
+            this.mob = response.statusText;
+          }
+        });    
+  },
   computed: {
+    filteredMobs()
+    {
+      return this.mobs;
+    },
     filteredMob() {
       return this.mob
       .filter(mobber=>this.showComplete ? true : !mobber.complete);
     },
     submitIsDisabled() {
       return this.text == '';
+    },
+    getMobsStatus()
+    {
+      return this.mobsStatus;
     }
   },
   methods: {
@@ -95,6 +123,10 @@ export default {
     },
     removeMobber(index) {
       this.mob.splice(index, 1)
+    },
+    async updateMobsList() {
+      let response = await axios.get('https://localhost:44396/Mob/GetMobsByTeamId?teamId=1');
+      this.mobs.push(response);
     }
   }
 }
